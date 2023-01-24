@@ -3,13 +3,20 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding: 25px;
 }
 
-.form form {
+.container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.container form {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
 
-.urlInput {
-  width: 400px;
+.container form button {
+  margin-top: 20px;
 }

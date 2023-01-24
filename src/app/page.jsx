@@ -12,7 +12,7 @@ export default function Home() {
       <div className={styles.description}>
         <h1>Check stock</h1>
       </div>
-      <div className={styles.form}>
+      <div className={styles.container}>
         <Form />
       </div>
     </main>
