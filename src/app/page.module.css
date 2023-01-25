@@ -14,9 +14,23 @@
 .container form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
-.container form button {
-  margin-top: 20px;
+.customInput {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.customInput span {
+  margin-bottom: 1rem;
+  color: red;
+}
+
+.ok {
+  color: green;
+}
+
+.error {
+  color: red;
 }
