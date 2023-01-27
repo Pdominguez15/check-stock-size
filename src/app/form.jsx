@@ -28,7 +28,7 @@ const schema = yup
   .required();
 
 export default function Form() {
-  const [models, setModels] = useState({});
+  const [models, setModels] = useState([]);
 
   const [response, setResponse] = useState({
     type: false,
@@ -40,6 +40,7 @@ export default function Form() {
     handleSubmit,
     getValues,
     trigger,
+    setError,
     formState: { errors, isDirty },
     reset,
   } = useForm({
@@ -57,13 +58,39 @@ export default function Form() {
 
   const [step, setStep] = useState(0);
 
+  const getCloudflareData = async () => {
+    return fetch("api/getData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({ url: getValues("url") }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then((res) => res.json())
+      .then((res) => {
+        setModels(res);
+        setStep(step + 1);
+      })
+      .catch((error) => {
+        setError("url", {
+          type: "manual",
+          message: "No se encontró el producto",
+        });
+      });
+  };
+
   const handleNextStep = async () => {
     if (step === 0) {
       const isUrlValid = await trigger("url");
       if (isUrlValid) {
-        const data = await getData(getValues().url);
-        setModels(data);
-        setStep(step + 1);
+        await getCloudflareData();
       }
     }
 
