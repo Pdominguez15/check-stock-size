@@ -2,30 +2,13 @@
 
 import { useEffect, useState } from "react";
 
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
-import { isUrlValid } from "helpers/isUrlValid";
-import { getData } from "helpers/getData";
-import { getUrlWithColor } from "helpers/getUrlWithColor";
+import { getValidations, getUrlWithColor } from "helpers";
+import { getData, sendData } from "helpers/api";
 
-import styles from "./page.module.css";
-
-const schema = yup
-  .object({
-    url: yup
-      .string()
-      .required("La url es requerida")
-      .url("No es una url")
-      .test("Check valid url", "No es una url válida", (value) =>
-        isUrlValid(value)
-      ),
-
-    color: yup.string().required("El color es requerido"),
-    size: yup.string().required("La talla es requerida"),
-  })
-  .required();
+import styles from "../page.module.css";
 
 export default function Form() {
   const [models, setModels] = useState([]);
@@ -34,6 +17,7 @@ export default function Form() {
     type: false,
     message: "",
   });
+  const [step, setStep] = useState(0);
 
   const {
     register,
@@ -44,7 +28,7 @@ export default function Form() {
     formState: { errors, isDirty },
     reset,
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(getValidations()),
   });
 
   useEffect(() => {
@@ -56,41 +40,21 @@ export default function Form() {
     }
   }, [isDirty]);
 
-  const [step, setStep] = useState(0);
-
-  const getCloudflareData = async () => {
-    return fetch("api/getData", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({ url: getValues("url") }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response;
-      })
-      .then((res) => res.json())
-      .then((res) => {
-        setModels(res);
-        setStep(step + 1);
-      })
-      .catch((error) => {
-        setError("url", {
-          type: "manual",
-          message: "No se encontró el producto",
-        });
-      });
-  };
-
   const handleNextStep = async () => {
     if (step === 0) {
       const isUrlValid = await trigger("url");
       if (isUrlValid) {
-        await getCloudflareData();
+        const model = await getData(getValues("url").replace("ES", "es"));
+        console.log("model", model);
+        if (model) {
+          setModels(model);
+          setStep(step + 1);
+        } else {
+          setError("url", {
+            type: "manual",
+            message: "No se encontró el producto",
+          });
+        }
       }
     }
 
@@ -102,34 +66,28 @@ export default function Form() {
     }
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const newData = {
-      url: getUrlWithColor(data.url, data.color),
+      url: getUrlWithColor(data.url.replace("ES", "es"), data.color),
       size: data.size,
+      store: models[0].store,
+      name: models[0].name,
     };
 
-    fetch("api/sendData", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(newData),
-    }).then((res) => {
-      if (res.ok) {
-        reset();
-        setStep(0);
-        setResponse({
-          isOk: true,
-          message: "El producto fue dado de alta correctamente.",
-        });
-      } else {
-        setResponse({
-          isOk: false,
-          message: "Error al dar de alta el producto, intentelo de nuevo.",
-        });
-      }
-    });
+    const isOk = await sendData(newData);
+    if (isOk) {
+      reset();
+      setStep(0);
+      setResponse({
+        isOk: true,
+        message: "El producto fue dado de alta correctamente.",
+      });
+    } else {
+      setResponse({
+        isOk: false,
+        message: "Error al dar de alta el producto, intentelo de nuevo.",
+      });
+    }
   };
 
   return (
@@ -176,19 +134,19 @@ export default function Form() {
       <div className={styles.containerButtons}>
         {step !== 0 && (
           <button type="button" onClick={() => setStep(step - 1)}>
-            Back
+            Volver
           </button>
         )}
 
         {step !== 2 && (
           <button type="button" onClick={handleNextStep}>
-            Next
+            Siguiente
           </button>
         )}
 
         {step === 2 && (
           <>
-            <button type="submit">Check</button>
+            <button type="submit">Enviar</button>
           </>
         )}
       </div>
