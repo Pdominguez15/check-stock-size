@@ -45,7 +45,7 @@ export default function Form() {
       const isUrlValid = await trigger("url");
       if (isUrlValid) {
         const model = await getData(getValues("url").replace("ES", "es"));
-        console.log("model", model);
+
         if (model) {
           setModels(model);
           setStep(step + 1);
@@ -64,14 +64,46 @@ export default function Form() {
         setStep(step + 1);
       }
     }
+    if (step === 2) {
+      const isSizeValid = await trigger("size");
+      if (isSizeValid) {
+        setStep(step + 1);
+      }
+    }
+    if (step === 3) {
+      const isNotificationValid = await trigger("notification");
+      if (isNotificationValid) {
+        setStep(step + 1);
+      }
+    }
   };
 
   const onSubmit = async (data) => {
+    if (getValues("notification") === "email") {
+      if (!getValues("email")) {
+        setError("email", {
+          type: "manual",
+          message: "El correo es obligatorio",
+        });
+        return;
+      }
+    } else {
+      if (!getValues("idChatTelegram")) {
+        setError("idChatTelegram", {
+          type: "manual",
+          message: "El idChatTelegram es obligatorio",
+        });
+        return;
+      }
+    }
+
     const newData = {
       url: getUrlWithColor(data.url.replace("ES", "es"), data.color),
       size: data.size,
       store: models[0].store,
       name: models[0].name,
+      notification:
+        data.notification === "email" ? data.email : data.idChatTelegram,
     };
 
     const isOk = await sendData(newData);
@@ -130,6 +162,36 @@ export default function Form() {
           <span>{errors.size?.message}</span>
         </div>
       )}
+      {step === 3 && (
+        <div className={styles.customInput}>
+          <label htmlFor="notification">¿Cómo quieres ser notificado?:</label>
+          <select id="notification" {...register("notification")}>
+            <option value="">Selecciona una opción:</option>
+            <option value="email">Correo</option>
+            <option value="idChatTelegram">Id chat telegram</option>
+          </select>
+          <span>{errors.size?.message}</span>
+        </div>
+      )}
+
+      {step === 4 && (
+        <>
+          {getValues("notification") === "email" && (
+            <div className={styles.customInput}>
+              <label htmlFor="email">Correo:</label>
+              <input id="email" {...register("email")} />
+              <span>{errors.email?.message}</span>
+            </div>
+          )}
+          {getValues("notification") === "idChatTelegram" && (
+            <div className={styles.customInput}>
+              <label htmlFor="idChatTelegram">ID chat telegram:</label>
+              <input id="idChatTelegram" {...register("idChatTelegram")} />
+              <span>{errors.idChatTelegram?.message}</span>
+            </div>
+          )}
+        </>
+      )}
 
       <div className={styles.containerButtons}>
         {step !== 0 && (
@@ -138,13 +200,13 @@ export default function Form() {
           </button>
         )}
 
-        {step !== 2 && (
+        {step !== 4 && (
           <button type="button" onClick={handleNextStep}>
             Siguiente
           </button>
         )}
 
-        {step === 2 && (
+        {step === 4 && (
           <>
             <button type="submit">Enviar</button>
           </>

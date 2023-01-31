@@ -13,6 +13,9 @@ const schema = yup
 
     color: yup.string().required("El color es requerido"),
     size: yup.string().required("La talla es requerida"),
+    notification: yup.string().required("La notificación es requerida"),
+    email: yup.string().email("No es un email válido"),
+    idChatTelegram: yup.string(),
   })
   .required();
 
