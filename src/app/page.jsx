@@ -1,4 +1,4 @@
-import { Analytics } from "@vercel/analytics/react";
+import { AnalyticsWrapper } from "./components/analytics";
 import Form from "./form/form";
 
 import styles from "./page.module.css";
@@ -6,7 +6,7 @@ import styles from "./page.module.css";
 export default function Home() {
   return (
     <main className={styles.main}>
-      <Analytics />
+      <AnalyticsWrapper />
       <div className={styles.description}>
         <h1>Comprobar stock</h1>
       </div>
