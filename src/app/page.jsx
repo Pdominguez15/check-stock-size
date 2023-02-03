@@ -1,4 +1,4 @@
-import { AnalyticsWrapper } from "./components/analytics";
+import { AnalyticsWrapper } from "./analytics";
 import Form from "./form/form";
 
 import styles from "./page.module.css";
