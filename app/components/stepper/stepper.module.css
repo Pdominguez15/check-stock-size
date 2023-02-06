@@ -1,0 +1,13 @@
+.containerButtons {
+  margin-top: 50px;
+  text-align: center;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.containerButtons .ok {
+  color: green;
+}
+
+.containerButtons .ko {
+  color: red;
+}

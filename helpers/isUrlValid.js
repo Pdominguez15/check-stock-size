@@ -1,5 +1,5 @@
-import { isStradivariusUrl } from "helpers/isStradivariusUrl";
-import { isZaraUrl } from "helpers/isZaraUrl";
+import { isStradivariusUrl } from "./isStradivariusUrl";
+import { isZaraUrl } from "./isZaraUrl";
 
 export const isUrlValid = (url) => {
   return isZaraUrl(url) || isStradivariusUrl(url);

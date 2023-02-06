@@ -1,0 +1,10 @@
+.stepLabel :global .MuiStepLabel-labelContainer .MuiStepLabel-label {
+  font-size: 15px;
+}
+.stepLabel :global .MuiStepLabel-iconContainer .Mui-completed {
+  color: green;
+}
+
+.containerButtons {
+  margin-top: 30px;
+}

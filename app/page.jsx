@@ -1,17 +1,17 @@
-import { AnalyticsWrapper } from "./analytics";
-import Form from "./form/form";
+import AnalyticsWrapper from "@/app/components/analytics";
+import CustomStepper from "@/app/components/stepper/stepper";
 
-import styles from "./page.module.css";
+import styles from "@/app/page.module.css";
 
 export default function Home() {
   return (
     <main className={styles.main}>
       <AnalyticsWrapper />
-      <div className={styles.description}>
+      <div>
         <h1>Comprobar stock</h1>
       </div>
       <div className={styles.container}>
-        <Form />
+        <CustomStepper />
       </div>
     </main>
   );

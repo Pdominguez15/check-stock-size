@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { isUrlValid } from "helpers/isUrlValid";
+import { isUrlValid } from "./isUrlValid";
 
 const schema = yup
   .object({

@@ -1,3 +1,4 @@
+export * from "./checkStep";
 export * from "./getUrlWithColor";
 export * from "./getValidations";
 export * from "./isStradivariusUrl";
