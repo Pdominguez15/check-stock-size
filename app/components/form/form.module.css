@@ -1,3 +1,11 @@
 .input {
   width: 90%;
 }
+
+.input :global .MuiFormLabel-root.Mui-focused {
+  color: #09142f;
+}
+
+.input :global .MuiInput-root.Mui-focused::after {
+  border-bottom: 2px solid #09142f;
+}

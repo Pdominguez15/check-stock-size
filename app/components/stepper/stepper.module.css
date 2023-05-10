@@ -1,13 +1,16 @@
-.containerButtons {
+.buttonsContainer {
   margin-top: 50px;
   text-align: center;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
-.containerButtons .ok {
+.buttonsContainer .ok {
   color: green;
 }
 
-.containerButtons .ko {
+.buttonsContainer .ko {
   color: red;
+}
+
+.buttonsContainer button {
+  color: rgba(24, 75, 178, 1);
 }

@@ -1,6 +1,6 @@
 import { Step, StepLabel, StepContent, Button } from "@mui/material";
 
-import styles from "./customStep.module.css";
+import styles from "@/app/components/stepper/components/customStep.module.css";
 
 export default function CustomStep({
   step,
@@ -11,10 +11,10 @@ export default function CustomStep({
 }) {
   return (
     <Step {...other}>
-      <StepLabel className={styles.stepLabel}>{step.label}</StepLabel>
-      <StepContent>
+      <StepLabel className={styles.label}>{step.label}</StepLabel>
+      <StepContent className={styles.content}>
         {step.component}
-        <div className={styles.containerButtons}>
+        <div className={styles.buttonsContainer}>
           <Button
             type={step.id === length - 1 ? "submit" : "button"}
             variant="contained"

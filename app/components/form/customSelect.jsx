@@ -1,7 +1,7 @@
 import { Controller } from "react-hook-form";
 import { TextField } from "@mui/material";
 
-import styles from "./form.module.css";
+import styles from "@/app/components/form/form.module.css";
 
 export default function CustomSelect({ name, control, errors, children }) {
   return (

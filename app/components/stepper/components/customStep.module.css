@@ -1,10 +1,56 @@
-.stepLabel :global .MuiStepLabel-labelContainer .MuiStepLabel-label {
-  font-size: 15px;
+.label :global .MuiStepLabel-labelContainer .MuiStepLabel-label {
+  font-size: 18px;
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+  }
 }
-.stepLabel :global .MuiStepLabel-iconContainer .Mui-completed {
+
+.label :global .MuiStepLabel-labelContainer .MuiStepLabel-label.Mui-disabled {
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+.label :global .MuiStepLabel-iconContainer .Mui-active {
+  color: #09142f;
+  font-size: 30px;
+
+  @media screen and (max-width: 768px) {
+    width: 25px;
+  }
+}
+.label :global .MuiStepLabel-iconContainer {
+  width: 50px;
+  @media screen and (max-width: 768px) {
+    width: 25px;
+  }
+}
+
+.label :global .MuiStepLabel-iconContainer .Mui-completed {
   color: green;
 }
 
-.containerButtons {
+.content {
+  padding-left: 50px;
+  @media screen and (max-width: 768px) {
+    padding-left: 20px;
+  }
+}
+
+.buttonsContainer {
   margin-top: 30px;
+
+  @media screen and (max-width: 768px) {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.buttonsContainer button:first-child {
+  background-color: #09142f;
+}
+
+.buttonsContainer button:nth-child(2) {
+  color: #09142f;
 }

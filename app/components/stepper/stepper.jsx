@@ -9,10 +9,10 @@ import { getValidations } from "@/helpers/index";
 
 import { StyledEngineProvider, Stepper, Button } from "@mui/material";
 
-import { getSteps, handleSteps } from "./utils";
-import CustomStep from "./components/customStep";
+import { getSteps, handleSteps } from "@/app/components/stepper/utils";
+import CustomStep from "@/app/components/stepper/components/customStep";
 
-import styles from "./stepper.module.css";
+import styles from "@/app/components/stepper/stepper.module.css";
 
 export default function CustomStepper() {
   const [activeStep, setActiveStep] = useState(0);
@@ -66,11 +66,11 @@ export default function CustomStepper() {
         </Stepper>
       </form>
       {activeStep === steps.length && (
-        <div className={styles.containerButtons}>
+        <div className={styles.buttonsContainer}>
           <p className={response.isOk ? styles.ok : styles.ko}>
             {response.message}
           </p>
-          {response.isOk ? (
+          {!response.isOk ? (
             <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
               Agregar otro producto
             </Button>
