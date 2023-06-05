@@ -7,7 +7,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { getValidations } from "@/helpers/index";
 
-import { StyledEngineProvider, Stepper, Button } from "@mui/material";
+import { Stepper, Button } from "@mui/material";
+
+import { StyledEngineProvider } from "@mui/material/styles";
 
 import { getSteps, handleSteps } from "@/app/components/stepper/utils";
 import CustomStep from "@/app/components/stepper/components/customStep";
@@ -70,7 +72,7 @@ export default function CustomStepper() {
           <p className={response.isOk ? styles.ok : styles.ko}>
             {response.message}
           </p>
-          {!response.isOk ? (
+          {response.isOk ? (
             <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
               Agregar otro producto
             </Button>
