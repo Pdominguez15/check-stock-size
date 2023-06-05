@@ -1,39 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Check Stock Size Frontend App
 
-## Getting Started
+This is a frontend application built with Next.js that allows you to submit a product that is out of stock and receive notifications when it becomes available.
 
-First, run the development server:
+## Prerequisites
+
+- Node.js installed on your system.
+
+## Installation
+
+Follow the steps below to set up and run the application:
+
+1. Clone this repository on your local machine or download the project files.
+
+2. In the project's root directory, run the following command to install the required dependencies:
+
+   ```bash
+   npm install
+   ```
+
+## Usage
+
+To start the development server, run the following command:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+ npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This will start the application on http://localhost:3000. You can access it in your browser and begin using the app.
 
-You can start editing the page by modifying `app/page.jsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+In the project directory, you can run the following scripts:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- **npm run dev**: Starts the development server.
+- **npm run build**: Builds the production-ready application.
+- **npm start**: Starts the production server.
+- **npm run lint**: Runs the ESLint linter to check for code quality and adherence to coding standards.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Contribution
 
-## Learn More
+If you'd like to contribute to this project, feel free to do so. You can submit pull requests with your improvements, bug fixes, or other modifications.
 
-To learn more about Next.js, take a look at the following resources:
+## Credits
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project utilizes the following npm packages:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- @hookform/resolvers: Form validation library for React Hook Form.
+- @mui/material: Material-UI component library for React.
+- @next/font: Next.js plugin for loading web fonts.
+- @vercel/analytics: Analytics package for tracking page views and user behavior.
+- eslint: JavaScript linter for code quality and formatting.
+- eslint-config-next: ESLint configuration for Next.js projects.
+- next: React framework for building server-rendered applications.
+- react: JavaScript library for building user interfaces.
+- react-dom: Entry point to the React library for web applications.
+- react-hook-form: Form validation library for React.
+- yup: JavaScript schema builder for validation and parsing.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# check-stock
+This project is licensed under the MIT License. See the LICENSE file for details.
