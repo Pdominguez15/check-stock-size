@@ -49,27 +49,32 @@ export const getSteps = (models, getValues, control, errors) => {
     },
     {
       id: 3,
-      label: "Selecciona el método de notificación",
-      component: (
-        <CustomSelect name="notification" control={control} errors={errors}>
-          <MenuItem value="email">Correo</MenuItem>
-          <MenuItem value="idChatTelegram">Id chat telegram</MenuItem>
-        </CustomSelect>
-      ),
+      label: "Introduce el correo",
+      component: <CustomInput name="email" control={control} errors={errors} />,
     },
-    {
-      id: 4,
-      label: getLabelNotification(),
-      component:
-        getValues("notification") === "email" ? (
-          <CustomInput name="email" control={control} errors={errors} />
-        ) : (
-          <CustomInput
-            name="idChatTelegram"
-            control={control}
-            errors={errors}
-          />
-        ),
-    },
+    // {
+    //   id: 3,
+    //   label: "Selecciona el método de notificación",
+    //   component: (
+    //     <CustomSelect name="notification" control={control} errors={errors}>
+    //       <MenuItem value="email">Correo</MenuItem>
+    //       <MenuItem value="idChatTelegram">Id chat telegram</MenuItem>
+    //     </CustomSelect>
+    //   ),
+    // },
+    // {
+    //   id: 4,
+    //   label: getLabelNotification(),
+    //   component:
+    //     getValues("notification") === "email" ? (
+    //       <CustomInput name="email" control={control} errors={errors} />
+    //     ) : (
+    //       <CustomInput
+    //         name="idChatTelegram"
+    //         control={control}
+    //         errors={errors}
+    //       />
+    //     ),
+    // },
   ];
 };

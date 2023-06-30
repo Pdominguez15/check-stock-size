@@ -36,31 +36,34 @@ export const handleSteps = (
   };
 
   const handleSubmit = async (data) => {
-    if (getValues("notification") === "email") {
-      if (!getValues("email")) {
-        setError("email", {
-          type: "manual",
-          message: "El correo es obligatorio",
-        });
-        return;
-      }
-    } else {
-      if (!getValues("idChatTelegram")) {
-        setError("idChatTelegram", {
-          type: "manual",
-          message: "El idChatTelegram es obligatorio",
-        });
-        return;
-      }
-    }
+    // if (getValues("notification") === "email") {
+    //   if (!getValues("email")) {
+    //     setError("email", {
+    //       type: "manual",
+    //       message: "El correo es obligatorio",
+    //     });
+    //     return;
+    //   }
+    // } else {
+    //   if (!getValues("idChatTelegram")) {
+    //     setError("idChatTelegram", {
+    //       type: "manual",
+    //       message: "El idChatTelegram es obligatorio",
+    //     });
+    //     return;
+    //   }
+    // }
+
+    trigger("email");
 
     const newData = {
       url: getUrlWithColor(data.url.replace("ES", "es"), data.color),
       size: data.size,
       store: models[0].store,
       name: models[0].name,
-      notification:
-        data.notification === "email" ? data.email : data.idChatTelegram,
+      // notification:
+      //   data.notification === "email" ? data.email : data.idChatTelegram,
+      notification: data.email,
     };
 
     const isOk = await sendData(newData);
