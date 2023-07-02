@@ -10,7 +10,7 @@ export default function CustomStep({
   ...other
 }) {
   return (
-    <Step {...other}>
+    <Step {...other} className={styles.step}>
       <StepLabel className={styles.label}>{step.label}</StepLabel>
       <StepContent className={styles.content}>
         {step.component}
