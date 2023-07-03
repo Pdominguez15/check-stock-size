@@ -1,5 +1,5 @@
 export const getData = async (url) => {
-  const response = await fetch("api/getData", {
+  const response = await fetch("api/productInfo", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
