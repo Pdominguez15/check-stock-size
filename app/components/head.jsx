@@ -4,7 +4,6 @@ export default function Head() {
       <title>checkStockSize | Ahorra tiempo y encuentra lo que buscas</title>
       <link rel="manifest" href="/manifest.json" />
       <link rel="apple-touch-icon" href="/icon-512x512.png"></link>
-      <meta name="theme-color" content="#000" />
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta
         name="description"
