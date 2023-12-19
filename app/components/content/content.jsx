@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import CustomStepper from "@/app/components/stepper/stepper";
 
-import inStock from "@/public/in-stock.png";
+import inStock from "@/public/in-stock-512.png";
 
 import styles from "@/app/components/content/content.module.css";
 

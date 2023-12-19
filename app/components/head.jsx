@@ -2,6 +2,9 @@ export default function Head() {
   return (
     <>
       <title>checkStockSize | Ahorra tiempo y encuentra lo que buscas</title>
+      <link rel="manifest" href="/manifest.json" />
+      <link rel="apple-touch-icon" href="/icon-512x512.png"></link>
+      <meta name="theme-color" content="#000" />
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta
         name="description"
@@ -32,16 +35,16 @@ export default function Head() {
         name="twitter:description"
         content="Encuentra tu talla deseada en artículos agotados. Recibe notificaciones por correo. ¡Ahorra tiempo y encuentra lo que buscas!"
       />
-      <link rel="icon" href="/in-stock.png" />
-      <link rel="apple-touch-icon" href="/in-stock.png" />
+      <link rel="icon" href="/in-stock-512.png" />
+      <link rel="apple-touch-icon" href="/in-stock-512.png" />
 
       <meta
         property="og:image"
-        content="https://www.checkstocksize.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fin-stock.9e706fc8.png&w=640&q=75"
+        content="https://www.checkstocksize.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fin-stock-512.9e706fc8.png&w=640&q=75"
       />
       <meta
         name="twitter:image"
-        content="https://www.checkstocksize.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fin-stock.9e706fc8.png&w=640&q=75"
+        content="https://www.checkstocksize.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fin-stock-512.9e706fc8.png&w=640&q=75"
       />
     </>
   );
