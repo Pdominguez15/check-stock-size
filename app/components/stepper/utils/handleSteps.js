@@ -4,21 +4,21 @@ import { sendData } from "@/helpers/api";
 export const handleSteps = (
   activeStep,
   trigger,
-  setModels,
+  setProductInfo,
   setActiveStep,
-  getValues,
+  getFormValues,
   setError,
   reset,
-  models,
-  setResponse
+  productInfo,
+  setAlertStatus
 ) => {
   const handleNext = async () => {
     const isStepValid = await checkStep(
       activeStep,
       trigger,
-      getValues,
+      getFormValues,
       setError,
-      setModels
+      setProductInfo
     );
     if (isStepValid) {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -31,13 +31,16 @@ export const handleSteps = (
 
   const handleReset = () => {
     reset();
-    setModels([]);
+    setProductInfo({
+      product: [],
+      productUrl: "",
+    });
     setActiveStep(0);
   };
 
-  const handleSubmit = async (data) => {
-    // if (getValues("notification") === "email") {
-    //   if (!getValues("email")) {
+  const handleSubmit = async (productInfo) => {
+    // if (getFormValues("notification") === "email") {
+    //   if (!getFormValues("email")) {
     //     setError("email", {
     //       type: "manual",
     //       message: "El correo es obligatorio",
@@ -45,7 +48,7 @@ export const handleSteps = (
     //     return;
     //   }
     // } else {
-    //   if (!getValues("idChatTelegram")) {
+    //   if (!getFormValues("idChatTelegram")) {
     //     setError("idChatTelegram", {
     //       type: "manual",
     //       message: "El idChatTelegram es obligatorio",
@@ -56,25 +59,25 @@ export const handleSteps = (
 
     trigger("email");
 
-    const newData = {
-      url: getUrlWithColor(data.url.replace("ES", "es"), data.color),
-      size: data.size,
-      store: models[0].store,
-      name: models[0].name,
+    const newproductInfo = {
+      url: productInfo?.productUrl,
+      size: productInfo.size,
+      store: productInfo?.product[0].store,
+      name: productInfo?.[0].name,
       // notification:
-      //   data.notification === "email" ? data.email : data.idChatTelegram,
-      notification: data.email,
+      //   productInfo.notification === "email" ? productInfo.email : productInfo.idChatTelegram,
+      notification: productInfo.email,
     };
 
-    const isOk = await sendData(newData);
+    const isOk = await sendData(newproductInfo);
 
     if (isOk) {
-      setResponse({
+      setAlertStatus({
         isOk: true,
         message: "La alerta ha sido añadida correctamente.",
       });
     } else {
-      setResponse({
+      setAlertStatus({
         isOk: false,
         message: "Error al añadir la alerta, inténtelo de nuevo.",
       });

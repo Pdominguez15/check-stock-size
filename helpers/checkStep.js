@@ -1,19 +1,21 @@
-import { getData } from "./api";
+import { getProductInfo } from "./api";
 
 export const checkStep = async (
   step,
   trigger,
-  getValues,
+  getFormValues,
   setError,
-  setModels
+  setProductInfo
 ) => {
   if (step === 0) {
     const isUrlValid = await trigger("url");
     if (isUrlValid) {
-      const models = await getData(getValues("url").replace("ES", "es"));
+      const productInfo = await getProductInfo(
+        getFormValues("url").replace("ES", "es")
+      );
 
-      if (models) {
-        setModels(models);
+      if (productInfo) {
+        setProductInfo(productInfo);
         return true;
       } else {
         setError("url", {

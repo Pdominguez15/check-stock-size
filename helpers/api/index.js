@@ -1,2 +1,2 @@
-export * from "./getData";
+export * from "./getProductInfo";
 export * from "./sendData";

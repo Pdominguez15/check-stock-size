@@ -2,16 +2,18 @@ import { MenuItem } from "@mui/material";
 import CustomInput from "@/app/components/form/customInput";
 import CustomSelect from "@/app/components/form/customSelect";
 
-export const getSteps = (models, getValues, control, errors) => {
-  const getLabelNotification = () => {
-    if (!getValues("notification")) {
-      return "Introduce el email o el id del chat de telegram";
-    } else if (getValues("notification") === "email") {
-      return "Introduce el correo";
-    } else if (getValues("notification") === "idChatTelegram") {
-      return "Introduce el id del chat de telegram";
-    }
-  };
+export const getSteps = (productInfo, getFormValues, control, errors) => {
+  console.log("Pedro ===> productInfo", productInfo.product);
+
+  // const getLabelNotification = () => {
+  //   if (!getFormValues("notification")) {
+  //     return "Introduce el email o el id del chat de telegram";
+  //   } else if (getFormValues("notification") === "email") {
+  //     return "Introduce el correo";
+  //   } else if (getFormValues("notification") === "idChatTelegram") {
+  //     return "Introduce el id del chat de telegram";
+  //   }
+  // };
 
   return [
     {
@@ -19,14 +21,27 @@ export const getSteps = (models, getValues, control, errors) => {
       label: "Introduce la URL del producto",
       component: <CustomInput name="url" control={control} errors={errors} />,
     },
+    // {
+    //   id: 1,
+    //   label: "Selecciona el color",
+    //   component: (
+    //     <CustomSelect name="color" control={control} errors={errors}>
+    //       {productInfo?.product?.map((product) => (
+    //         <MenuItem value={product.id} key={product.id}>
+    //           {product.color}
+    //         </MenuItem>
+    //       ))}
+    //     </CustomSelect>
+    //   ),
+    // },
     {
       id: 1,
-      label: "Selecciona el color",
+      label: "Selecciona la talla",
       component: (
-        <CustomSelect name="color" control={control} errors={errors}>
-          {models?.map((model) => (
-            <MenuItem value={model.id} key={model.id}>
-              {model.color}
+        <CustomSelect name="size" control={control} errors={errors}>
+          {productInfo?.product[0]?.sizes?.map((size) => (
+            <MenuItem value={size} key={size}>
+              {size}
             </MenuItem>
           ))}
         </CustomSelect>
@@ -34,21 +49,6 @@ export const getSteps = (models, getValues, control, errors) => {
     },
     {
       id: 2,
-      label: "Selecciona la talla",
-      component: (
-        <CustomSelect name="size" control={control} errors={errors}>
-          {models
-            ?.filter((product) => product.id === getValues("color"))[0]
-            ?.sizes.map((size) => (
-              <MenuItem value={size} key={size}>
-                {size}
-              </MenuItem>
-            ))}
-        </CustomSelect>
-      ),
-    },
-    {
-      id: 3,
       label: "Introduce el correo",
       component: <CustomInput name="email" control={control} errors={errors} />,
     },
@@ -66,7 +66,7 @@ export const getSteps = (models, getValues, control, errors) => {
     //   id: 4,
     //   label: getLabelNotification(),
     //   component:
-    //     getValues("notification") === "email" ? (
+    //     getFormValues("notification") === "email" ? (
     //       <CustomInput name="email" control={control} errors={errors} />
     //     ) : (
     //       <CustomInput

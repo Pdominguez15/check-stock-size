@@ -18,17 +18,19 @@ import styles from "@/app/components/stepper/stepper.module.css";
 
 export default function CustomStepper() {
   const [activeStep, setActiveStep] = useState(0);
+  const [productInfo, setProductInfo] = useState({
+    product: [],
+    productUrl: "",
+  });
 
-  const [models, setModels] = useState([]);
-
-  const [response, setResponse] = useState({
+  const [alertStatus, setAlertStatus] = useState({
     isOk: false,
     message: "",
   });
 
   const {
     handleSubmit: onSubmit,
-    getValues,
+    getFormValues: getFormValues,
     control,
     trigger,
     setError,
@@ -38,25 +40,25 @@ export default function CustomStepper() {
     resolver: yupResolver(getValidations()),
   });
 
-  const steps = getSteps(models, getValues, control, errors);
+  const steps = getSteps(productInfo, getFormValues, control, errors);
 
   const { handleNext, handleBack, handleReset, handleSubmit } = handleSteps(
     activeStep,
     trigger,
-    setModels,
+    setProductInfo,
     setActiveStep,
-    getValues,
+    getFormValues,
     setError,
     reset,
-    models,
-    setResponse
+    productInfo,
+    setAlertStatus
   );
 
   return (
     <StyledEngineProvider injectFirst>
       <form onSubmit={onSubmit(handleSubmit)}>
         <Stepper activeStep={activeStep} orientation="vertical">
-          {steps.map((step, index) => (
+          {steps.map((step) => (
             <CustomStep
               key={step.id}
               step={step}
@@ -69,10 +71,10 @@ export default function CustomStepper() {
       </form>
       {activeStep === steps.length && (
         <div className={styles.buttonsContainer}>
-          <p className={response.isOk ? styles.ok : styles.ko}>
-            {response.message}
+          <p className={alertStatus.isOk ? styles.ok : styles.ko}>
+            {alertStatus.message}
           </p>
-          {response.isOk ? (
+          {alertStatus.isOk ? (
             <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
               Agregar otro producto
             </Button>
