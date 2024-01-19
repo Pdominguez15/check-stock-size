@@ -38,7 +38,7 @@ export const handleSteps = (
     setActiveStep(0);
   };
 
-  const handleSubmit = async (productInfo) => {
+  const handleSubmit = async (formData, productInfo) => {
     // if (getFormValues("notification") === "email") {
     //   if (!getFormValues("email")) {
     //     setError("email", {
@@ -61,12 +61,12 @@ export const handleSteps = (
 
     const newproductInfo = {
       url: productInfo?.productUrl,
-      size: productInfo.size,
+      size: formData.size,
       store: productInfo?.product[0].store,
-      name: productInfo?.[0].name,
+      name: productInfo?.product[0].name,
       // notification:
       //   productInfo.notification === "email" ? productInfo.email : productInfo.idChatTelegram,
-      notification: productInfo.email,
+      notification: formData.email,
     };
 
     const isOk = await sendData(newproductInfo);

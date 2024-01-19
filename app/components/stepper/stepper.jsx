@@ -56,7 +56,9 @@ export default function CustomStepper() {
 
   return (
     <StyledEngineProvider injectFirst>
-      <form onSubmit={onSubmit(handleSubmit)}>
+      <form
+        onSubmit={onSubmit((formData) => handleSubmit(formData, productInfo))}
+      >
         <Stepper activeStep={activeStep} orientation="vertical">
           {steps.map((step) => (
             <CustomStep

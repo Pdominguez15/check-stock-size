@@ -11,7 +11,7 @@ const schema = yup
         isUrlValid(value)
       ),
 
-    color: yup.string().required("El color es requerido"),
+    // color: yup.string().required("El color es requerido"),
     size: yup.string().required("La talla es requerida"),
     email: yup
       .string()

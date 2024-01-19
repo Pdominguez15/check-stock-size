@@ -3,8 +3,6 @@ import CustomInput from "@/app/components/form/customInput";
 import CustomSelect from "@/app/components/form/customSelect";
 
 export const getSteps = (productInfo, getFormValues, control, errors) => {
-  console.log("Pedro ===> productInfo", productInfo.product);
-
   // const getLabelNotification = () => {
   //   if (!getFormValues("notification")) {
   //     return "Introduce el email o el id del chat de telegram";
