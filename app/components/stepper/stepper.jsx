@@ -30,7 +30,7 @@ export default function CustomStepper() {
 
   const {
     handleSubmit: onSubmit,
-    getFormValues: getFormValues,
+    getValues: getFormValues,
     control,
     trigger,
     setError,
