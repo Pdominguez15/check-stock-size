@@ -60,7 +60,8 @@ export const handleSteps = (
     trigger("email");
 
     const newproductInfo = {
-      url: productInfo?.productUrl,
+      url: formData.url,
+      urlScraping: productInfo?.productUrl,
       size: formData.size,
       store: productInfo?.product[0].store,
       name: productInfo?.product[0].name,
