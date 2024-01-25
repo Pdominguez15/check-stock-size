@@ -27,7 +27,7 @@
   background-color: #09142f;
 }
 
-.buttonsContainer :global .MuiButton-root.MuiButton-text {
+.buttonsContainer :global .MuiButton-root.MuiButton-text:not(:disabled) {
   color: #09142f;
 }
 
