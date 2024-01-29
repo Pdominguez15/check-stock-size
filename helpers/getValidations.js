@@ -11,11 +11,16 @@ const schema = yup
         isUrlValid(value)
       ),
 
-    color: yup.string().required("El color es requerido"),
+    // color: yup.string().required("El color es requerido"),
     size: yup.string().required("La talla es requerida"),
-    notification: yup.string().required("La notificación es requerida"),
-    email: yup.string().email("No es un email válido"),
-    idChatTelegram: yup.string(),
+    // email: yup
+    //   .string()
+    //   .required("El correo es requerido")
+    //   .email("No es un email válido"),
+
+    // notification: yup.string().required("La notificación es requerida"),
+    // email: yup.string().email("No es un email válido"),
+    idChatTelegram: yup.string().required("El id es requerido"),
   })
   .required();
 

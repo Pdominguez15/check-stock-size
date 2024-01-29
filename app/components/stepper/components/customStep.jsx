@@ -10,11 +10,18 @@ export default function CustomStep({
   ...other
 }) {
   return (
-    <Step {...other}>
+    <Step {...other} className={styles.step}>
       <StepLabel className={styles.label}>{step.label}</StepLabel>
       <StepContent className={styles.content}>
         {step.component}
         <div className={styles.buttonsContainer}>
+          <Button
+            disabled={step.id === 0}
+            onClick={handleBack}
+            sx={{ mt: 1, mr: 1 }}
+          >
+            Atrás
+          </Button>
           <Button
             type={step.id === length - 1 ? "submit" : "button"}
             variant="contained"
@@ -28,13 +35,6 @@ export default function CustomStep({
             sx={{ mt: 1, mr: 1 }}
           >
             {step.id === length - 1 ? "Enviar alerta" : "Avanzar"}
-          </Button>
-          <Button
-            disabled={step.id === 0}
-            onClick={handleBack}
-            sx={{ mt: 1, mr: 1 }}
-          >
-            Atrás
           </Button>
         </div>
       </StepContent>

@@ -6,7 +6,11 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/api/:path*",
+        source: "/api/v1/:path*",
+        destination: "https://check-stock-size-backend.vercel.app/v1/:path*",
+      },
+      {
+        source: "/api/v2/:path*",
         destination: "https://scraping.preferee21.workers.dev/:path*",
       },
     ];

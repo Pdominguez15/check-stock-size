@@ -15,7 +15,7 @@
   color: green;
 }
 
-.content {
+.step :global .MuiStepContent-root {
   padding-left: 50px;
 }
 
@@ -23,11 +23,11 @@
   margin-top: 30px;
 }
 
-.buttonsContainer button:first-child {
+.buttonsContainer :global .MuiButton-root.MuiButton-contained {
   background-color: #09142f;
 }
 
-.buttonsContainer button:nth-child(2) {
+.buttonsContainer :global .MuiButton-root.MuiButton-text:not(:disabled) {
   color: #09142f;
 }
 
@@ -47,7 +47,7 @@
     width: 25px;
   }
 
-  .content {
+  .step :global .MuiStepContent-root {
     padding-left: 20px;
   }
 
