@@ -1,5 +1,5 @@
 export const isZaraUrl = (url) => {
-  const regexZara = new RegExp(/https:\/\/www.zara.com\/(es|ES)\/es\//);
+  const regexZara = new RegExp(/https:\/\/www.zara.com\//);
 
   return regexZara.test(url);
 };

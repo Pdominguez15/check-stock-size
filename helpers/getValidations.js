@@ -5,6 +5,7 @@ const schema = yup
   .object({
     url: yup
       .string()
+      .trim()
       .required("La url es requerida")
       .url("No es una url")
       .test("Check valid url", "No es una url válida", (value) =>
