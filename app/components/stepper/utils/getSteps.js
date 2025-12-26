@@ -47,8 +47,10 @@ export const getSteps = (productInfo, getFormValues, control, errors) => {
     },
     {
       id: 2,
-      label: "Introduce el correo",
-      component: <CustomInput name="email" control={control} errors={errors} />,
+      label: "Introduce el id de telegram",
+      component: (
+        <CustomInput name="idChatTelegram" control={control} errors={errors} />
+      ),
     },
     // {
     //   id: 3,

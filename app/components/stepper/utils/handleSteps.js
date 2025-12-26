@@ -57,7 +57,7 @@ export const handleSteps = (
     //   }
     // }
 
-    trigger("email");
+    trigger("idChatTelegram");
 
     const newproductInfo = {
       url: formData.url,
@@ -67,7 +67,7 @@ export const handleSteps = (
       name: productInfo?.product[0].name,
       // notification:
       //   productInfo.notification === "email" ? productInfo.email : productInfo.idChatTelegram,
-      notification: formData.email,
+      notification: formData.idChatTelegram,
     };
 
     const isOk = await sendData(newproductInfo);

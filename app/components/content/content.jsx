@@ -14,7 +14,7 @@ export default function Content() {
           <div className={styles.logo}>
             <Image src={inStock} alt="stock" />
           </div>
-          <h1>Check stock</h1>
+          <h1>Kass APP</h1>
         </div>
 
         <main className={styles.main}>
